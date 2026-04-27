@@ -4,7 +4,7 @@ from engine.parser import ValidationError, generate_sample_csv, parse_csv
 
 
 def render_upload():
-    st.title("AI Audit Assistant")
+    st.title("NexAudit")
     st.caption("Upload your expense CSV and receipt images to begin the audit.")
 
     st.download_button(
