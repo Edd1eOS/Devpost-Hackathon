@@ -3,7 +3,7 @@ from ui.upload_view import render_upload
 from ui.processing_view import render_processing
 from ui.results_view import render_results
 
-st.set_page_config(page_title="NexAudit", layout="wide")
+st.set_page_config(page_title="NexAudit", page_icon="🔎", layout="wide")
 
 if "step" not in st.session_state:
     st.session_state["step"] = "upload"
