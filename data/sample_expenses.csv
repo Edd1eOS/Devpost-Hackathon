@@ -1,0 +1,7 @@
+expense_id,employee_id,vendor,amount,date,category,receipt_file
+1,EMP001,Starbucks,14.5,2026-04-01,Meals,receipt_starbucks.png
+2,EMP002,Woolworths,78.2,2026-04-02,Office Supplies,receipt_woolworths.png
+3,EMP001,Dan Murphys,45.0,2026-04-03,Client Meeting,receipt_wine.png
+4,EMP003,Uber,32.0,2026-04-04,Transport,
+5,EMP002,Officeworks,120.0,2026-04-05,Equipment,receipt_officeworks.png
+6,EMP002,Officeworks,120.0,2026-04-05,Equipment,receipt_officeworks.png
