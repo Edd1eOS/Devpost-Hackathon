@@ -88,6 +88,72 @@ def _export_csv(results: list) -> bytes:
     return df.to_csv(index=False).encode("utf-8")
 
 
+def _export_excel(results: list) -> bytes:
+    from openpyxl import Workbook
+    from openpyxl.styles import Alignment, Font, PatternFill
+    from openpyxl.utils import get_column_letter
+
+    _FILL = {
+        "FLAGGED":   PatternFill("solid", fgColor="FFCCCC"),
+        "UNCERTAIN": PatternFill("solid", fgColor="FFE0B2"),
+        "OK":        PatternFill("solid", fgColor="C8E6C9"),
+    }
+    _SEVERITY_FILL = {
+        "HIGH":   PatternFill("solid", fgColor="EF9A9A"),
+        "MEDIUM": PatternFill("solid", fgColor="FFCC80"),
+        "LOW":    PatternFill("solid", fgColor="FFF9C4"),
+        "NONE":   PatternFill("solid", fgColor="F5F5F5"),
+    }
+
+    headers = [
+        "expense_id", "employee_id", "vendor", "amount", "date", "category",
+        "receipt_file", "audit_status", "severity", "confidence",
+        "triggered_rules", "reason_summary", "detailed_reason",
+        "suggested_action", "matched_receipt_file", "duplicate_match_id",
+        "ai_assisted", "ai_note", "generated_at",
+    ]
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Audit Report"
+
+    # Header row
+    header_font = Font(bold=True)
+    for col, h in enumerate(headers, 1):
+        cell = ws.cell(row=1, column=col, value=h)
+        cell.font = header_font
+        cell.alignment = Alignment(horizontal="center")
+
+    # Data rows
+    for row_idx, r in enumerate(results, 2):
+        values = [
+            r.expense_id, r.employee_id, r.vendor, r.amount, r.date,
+            r.category, r.receipt_file, r.audit_status.value, r.severity.value,
+            round(r.confidence, 3), ", ".join(r.triggered_rules),
+            r.reason_summary, r.detailed_reason, r.suggested_action,
+            r.matched_receipt_file, r.duplicate_match_id or "",
+            r.ai_assisted, r.ai_note or "", r.generated_at,
+        ]
+        for col, val in enumerate(values, 1):
+            ws.cell(row=row_idx, column=col, value=val)
+
+        # Color audit_status column (col 8) and severity column (col 9)
+        ws.cell(row=row_idx, column=8).fill = _FILL.get(r.audit_status.value, PatternFill())
+        ws.cell(row=row_idx, column=9).fill = _SEVERITY_FILL.get(r.severity.value, PatternFill())
+
+    # Column widths
+    col_widths = [10, 12, 20, 10, 12, 18, 20, 12, 10, 12,
+                  30, 40, 50, 35, 20, 18, 12, 35, 22]
+    for col, width in enumerate(col_widths, 1):
+        ws.column_dimensions[get_column_letter(col)].width = width
+
+    ws.freeze_panes = "A2"
+
+    buf = io.BytesIO()
+    wb.save(buf)
+    return buf.getvalue()
+
+
 def _render_detail(result: AuditResult):
     st.subheader("Detail Panel")
 
@@ -219,20 +285,37 @@ def render_results():
     st.divider()
 
     # --- Export ---
-    export_choice = st.radio("Export:", ["All results", "Flagged only", "Uncertain only"], horizontal=True)
-    if export_choice == "Flagged only":
+    exp_col1, exp_col2 = st.columns(2)
+    with exp_col1:
+        export_filter = st.radio(
+            "Include:", ["All results", "Flagged only", "Uncertain only"], horizontal=True
+        )
+    with exp_col2:
+        export_format = st.radio(
+            "Format:", ["CSV", "Excel"], horizontal=True
+        )
+
+    if export_filter == "Flagged only":
         export_data = flagged
-    elif export_choice == "Uncertain only":
+    elif export_filter == "Uncertain only":
         export_data = uncertain
     else:
         export_data = results
 
-    st.download_button(
-        "Export CSV",
-        data=_export_csv(export_data),
-        file_name="audit_report.csv",
-        mime="text/csv",
-    )
+    if export_format == "Excel":
+        st.download_button(
+            "Export Excel",
+            data=_export_excel(export_data),
+            file_name="audit_report.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        )
+    else:
+        st.download_button(
+            "Export CSV",
+            data=_export_csv(export_data),
+            file_name="audit_report.csv",
+            mime="text/csv",
+        )
     st.caption("This report is a first-pass audit assistant and is not a replacement for human review.")
 
     st.divider()
