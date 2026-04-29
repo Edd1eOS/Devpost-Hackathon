@@ -1,0 +1,4 @@
+expense_id,employee_id,vendor,amount,category,receipt_file,expected_status,actual_status,severity,confidence,triggered_rules,reason_summary,ai_assisted,pass_fail,generated_at
+EXP001,EMP01,Park & Ride,29.2,Transportation,date_as_cost.jpg,UNCERTAIN/FLAGGED,FLAGGED,MEDIUM,0.85,check_category,AI: receipt content inconsistent with 'Transportation',True,PASS,2026-04-29T06:59:45Z
+EXP002,EMP02,NexPrint Solutions,85.0,Office Supplies,inv_ref_confusion.jpg,OK/UNCERTAIN/FLAGGED,FLAGGED,MEDIUM,0.85,check_category,AI: receipt content inconsistent with 'Office Supplies',True,PASS,2026-04-29T06:59:45Z
+EXP003,EMP03,Restaurant,42.5,Meals,no_total_order_slip.jpg,UNCERTAIN/FLAGGED,OK,NONE,1.0,,,True,FAIL,2026-04-29T06:59:45Z
