@@ -1,0 +1,8 @@
+expense_id,employee_id,vendor,amount,category,receipt_file,expected_status,actual_status,severity,confidence,triggered_rules,reason_summary,ai_assisted,pass_fail,generated_at
+EXP001,EMP01,Starbucks,10.8,Meals,receipt_001.jpg,OK,FLAGGED,HIGH,1.0,"check_duplicate, check_suspicious_pattern",exact duplicate receipt file (matches EXP006),True,FAIL,2026-04-29T05:58:08Z
+EXP002,EMP02,Delta Airlines,360.0,Travel,receipt_002.jpg,OK,UNCERTAIN,LOW,0.5,check_suspicious_pattern,weak pattern signal for employee EMP02,True,FAIL,2026-04-29T05:58:08Z
+EXP003,EMP01,Office Depot,89.99,Office Supplies,receipt_003.jpg,FLAGGED,FLAGGED,HIGH,0.95,"check_amount_mismatch, check_suspicious_pattern",+27.8% mismatch exceeds 10% threshold,True,PASS,2026-04-29T05:58:08Z
+EXP004,EMP03,Marriott Hotel,225.0,Accommodation,receipt_004.jpg,OK,UNCERTAIN,LOW,0.5,check_category,AI: category unclear for 'Accommodation',True,FAIL,2026-04-29T05:58:08Z
+EXP005,EMP02,The Capital Grille,124.0,Meals,receipt_005.jpg,FLAGGED,FLAGGED,MEDIUM,0.85,"check_amount_mismatch, check_category",AI: receipt content inconsistent with 'Meals',True,PASS,2026-04-29T05:58:08Z
+EXP006,EMP01,Starbucks,10.8,Meals,receipt_001.jpg,FLAGGED,FLAGGED,HIGH,1.0,"check_duplicate, check_suspicious_pattern",exact duplicate receipt file (matches EXP001),True,PASS,2026-04-29T05:58:08Z
+EXP007,EMP04,Unknown Vendor,55.0,Gambling,receipt_missing.jpg,FLAGGED,FLAGGED,HIGH,1.0,"check_missing_receipt, check_category",receipt file not found: receipt_missing.jpg,False,PASS,2026-04-29T05:58:08Z
