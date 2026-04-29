@@ -81,7 +81,7 @@ def run(case: str = "case_1"):
     case_dir     = os.path.join(ROOT, "data", case)
     csv_path     = os.path.join(case_dir, "test_expenses.csv")
     receipts_dir = os.path.join(case_dir, "receipts")
-    results_dir  = os.path.join(case_dir, "results")
+    results_dir  = os.path.join(ROOT, "data", "results", case)
     os.makedirs(results_dir, exist_ok=True)
 
     expected_map = EXPECTED.get(case, {})
@@ -145,8 +145,8 @@ def run(case: str = "case_1"):
 
     print(f"\nResults: {passed} passed / {failed} failed / {len(results)} total")
 
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    out_path  = os.path.join(results_dir, f"test_results_{timestamp}.csv")
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    out_path  = os.path.join(results_dir, f"{case}_{timestamp}.csv")
     pd.DataFrame(rows).to_csv(out_path, index=False)
     print(f"Saved:   {out_path}")
     print("=" * 65)
