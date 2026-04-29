@@ -1,0 +1,15 @@
+expense_id,employee_id,vendor,amount,date,category,receipt_file
+EXP001,EMP01,Starbucks,10.80,2026-04-15,Meals,r001.jpg
+EXP002,EMP01,Delta Airlines,360.00,2026-04-17,Travel,r002.jpg
+EXP003,EMP02,Uber,45.00,2026-04-18,Transportation,r003.jpg
+EXP004,EMP02,Office Depot,89.99,2026-04-19,Office Supplies,r004.jpg
+EXP005,EMP03,Chipotle,22.50,2026-04-19,Meals,r005.jpg
+EXP006,EMP03,Chipotle,23.00,2026-04-21,Meals,r006.jpg
+EXP007,EMP03,Marriott,210.00,2026-04-22,Accommodation,r007.jpg
+EXP008,EMP03,Marriott,210.00,2026-04-22,Accommodation,r007.jpg
+EXP009,EMP04,The Capital Grille,124.00,2026-04-20,Meals,r009.jpg
+EXP010,EMP04,Unknown Vendor,55.00,2026-04-21,Gambling,missing_1.jpg
+EXP011,EMP05,Vendor X,80.00,2026-04-22,Training,missing_2.jpg
+EXP012,EMP05,Vendor Y,95.00,2026-04-23,Training,missing_3.jpg
+EXP013,EMP05,Hyatt Regency,150.00,2026-04-24,Accommodation,r013.jpg
+EXP014,EMP05,Hyatt Regency,150.00,2026-04-24,Accommodation,r013.jpg

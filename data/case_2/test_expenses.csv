@@ -1,0 +1,4 @@
+expense_id,employee_id,vendor,amount,date,category,receipt_file
+EXP001,EMP01,Starbucks,10.80,2026-04-15,Meals,blur_mild.jpg
+EXP002,EMP02,Delta Airlines,360.00,2026-04-17,Travel,blur_heavy.jpg
+EXP003,EMP03,Office Depot,89.99,2026-04-19,Office Supplies,blur_motion.jpg

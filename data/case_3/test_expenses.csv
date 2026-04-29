@@ -1,0 +1,4 @@
+expense_id,employee_id,vendor,amount,date,category,receipt_file
+EXP001,EMP01,ACME Corp,45.00,2026-04-20,Professional Services,business_card.jpg
+EXP002,EMP02,Internal,30.00,2026-04-21,Training,meeting_agenda.jpg
+EXP003,EMP03,Whole Foods,18.50,2026-04-22,Meals,nutrition_label.jpg

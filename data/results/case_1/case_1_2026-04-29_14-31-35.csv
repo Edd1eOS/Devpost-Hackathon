@@ -1,0 +1,15 @@
+expense_id,employee_id,vendor,amount,category,receipt_file,expected_status,actual_status,severity,confidence,triggered_rules,reason_summary,ai_assisted,pass_fail,generated_at
+EXP001,EMP01,Starbucks,10.8,Meals,r001.jpg,OK,OK,NONE,1.0,,,True,PASS,2026-04-29T06:31:35Z
+EXP002,EMP01,Delta Airlines,360.0,Travel,r002.jpg,OK,OK,NONE,1.0,,,True,PASS,2026-04-29T06:31:35Z
+EXP003,EMP02,Uber,45.0,Transportation,r003.jpg,UNCERTAIN,UNCERTAIN,LOW,0.7,"check_amount_mismatch, check_suspicious_pattern",possible rounding/tip: 7.0% difference,True,PASS,2026-04-29T06:31:35Z
+EXP004,EMP02,Office Depot,89.99,Office Supplies,r004.jpg,FLAGGED,FLAGGED,HIGH,0.95,check_amount_mismatch,+27.8% mismatch exceeds 10% threshold,True,PASS,2026-04-29T06:31:35Z
+EXP005,EMP03,Chipotle,22.5,Meals,r005.jpg,UNCERTAIN,UNCERTAIN,MEDIUM,0.7,"check_duplicate, check_suspicious_pattern","fuzzy duplicate (matches EXP006): same vendor, ~amount, ~date",True,PASS,2026-04-29T06:31:35Z
+EXP006,EMP03,Chipotle,23.0,Meals,r006.jpg,UNCERTAIN,UNCERTAIN,MEDIUM,0.7,"check_duplicate, check_suspicious_pattern","fuzzy duplicate (matches EXP005): same vendor, ~amount, ~date",True,PASS,2026-04-29T06:31:35Z
+EXP007,EMP03,Marriott,210.0,Accommodation,r007.jpg,FLAGGED,FLAGGED,HIGH,1.0,"check_duplicate, check_suspicious_pattern",exact duplicate receipt file (matches EXP008),True,PASS,2026-04-29T06:31:35Z
+EXP008,EMP03,Marriott,210.0,Accommodation,r007.jpg,FLAGGED,FLAGGED,HIGH,1.0,"check_duplicate, check_suspicious_pattern",exact duplicate receipt file (matches EXP007),True,PASS,2026-04-29T06:31:35Z
+EXP009,EMP04,The Capital Grille,124.0,Meals,r009.jpg,FLAGGED,FLAGGED,MEDIUM,0.85,"check_category, check_suspicious_pattern",AI: receipt content inconsistent with 'Meals',True,PASS,2026-04-29T06:31:35Z
+EXP010,EMP04,Unknown Vendor,55.0,Gambling,missing_1.jpg,FLAGGED,FLAGGED,HIGH,1.0,"check_missing_receipt, check_category, check_suspicious_pattern",receipt file not found: missing_1.jpg,False,PASS,2026-04-29T06:31:35Z
+EXP011,EMP05,Vendor X,80.0,Training,missing_2.jpg,FLAGGED,FLAGGED,HIGH,1.0,"check_missing_receipt, check_category, check_suspicious_pattern",receipt file not found: missing_2.jpg,False,PASS,2026-04-29T06:31:35Z
+EXP012,EMP05,Vendor Y,95.0,Training,missing_3.jpg,FLAGGED,FLAGGED,HIGH,1.0,"check_missing_receipt, check_category, check_suspicious_pattern",receipt file not found: missing_3.jpg,False,PASS,2026-04-29T06:31:35Z
+EXP013,EMP05,Hyatt Regency,150.0,Accommodation,r013.jpg,FLAGGED,FLAGGED,HIGH,1.0,"check_duplicate, check_suspicious_pattern",exact duplicate receipt file (matches EXP014),True,PASS,2026-04-29T06:31:35Z
+EXP014,EMP05,Hyatt Regency,150.0,Accommodation,r013.jpg,FLAGGED,FLAGGED,HIGH,1.0,"check_duplicate, check_suspicious_pattern",exact duplicate receipt file (matches EXP013),True,PASS,2026-04-29T06:31:35Z
