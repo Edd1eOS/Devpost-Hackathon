@@ -1,0 +1,4 @@
+expense_id,employee_id,vendor,amount,category,receipt_file,expected_status,actual_status,severity,confidence,triggered_rules,reason_summary,ai_assisted,pass_fail,generated_at
+EXP001,EMP01,Starbucks,10.8,Meals,blur_mild.jpg,OK/UNCERTAIN,OK,NONE,1.0,,,True,PASS,2026-04-29T06:59:40Z
+EXP002,EMP02,Delta Airlines,360.0,Travel,blur_heavy.jpg,UNCERTAIN/FLAGGED,FLAGGED,MEDIUM,0.85,"check_missing_receipt, check_category",AI: receipt content inconsistent with 'Travel',True,PASS,2026-04-29T06:59:40Z
+EXP003,EMP03,Office Depot,89.99,Office Supplies,blur_motion.jpg,UNCERTAIN/FLAGGED,FLAGGED,MEDIUM,0.85,"check_missing_receipt, check_category",AI: receipt content inconsistent with 'Office Supplies',True,PASS,2026-04-29T06:59:40Z

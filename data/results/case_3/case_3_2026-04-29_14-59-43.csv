@@ -1,0 +1,4 @@
+expense_id,employee_id,vendor,amount,category,receipt_file,expected_status,actual_status,severity,confidence,triggered_rules,reason_summary,ai_assisted,pass_fail,generated_at
+EXP001,EMP01,ACME Corp,45.0,Professional Services,business_card.jpg,UNCERTAIN/FLAGGED,FLAGGED,MEDIUM,0.85,"check_missing_receipt, check_category",AI: receipt content inconsistent with 'Professional Services',True,PASS,2026-04-29T06:59:43Z
+EXP002,EMP02,Internal,30.0,Training,meeting_agenda.jpg,UNCERTAIN/FLAGGED,FLAGGED,MEDIUM,0.85,check_category,AI: receipt content inconsistent with 'Training',True,PASS,2026-04-29T06:59:43Z
+EXP003,EMP03,Whole Foods,18.5,Meals,nutrition_label.jpg,UNCERTAIN/FLAGGED,FLAGGED,MEDIUM,0.85,check_category,AI: receipt content inconsistent with 'Meals',True,PASS,2026-04-29T06:59:43Z

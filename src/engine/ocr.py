@@ -67,10 +67,9 @@ def _groq_extract(image_bytes: bytes) -> OCRResult | None:
                 except ValueError:
                     amount = None
 
-            # Confidence: high if all three key fields present
+            # Confidence scales with fields found; 0 fields = unreadable image
             fields_found = sum(1 for f in [data.get("vendor"), amount, data.get("date")] if f is not None)
-            confidence = 0.6 + 0.15 * fields_found  # 0.75 / 0.90 / 1.05 → capped at 1.0
-            confidence = min(confidence, 1.0)
+            confidence = [0.1, 0.6, 0.8, 0.95][fields_found]
 
             return OCRResult(
                 vendor=data.get("vendor") or None,

@@ -46,6 +46,24 @@ from engine.parser import parse_csv
 # ---------------------------------------------------------------------------
 
 EXPECTED = {
+    # case_2: blurred images — expectations set after first observed run
+    "case_2": {
+        "EXP001": ["OK", "UNCERTAIN"],          # mild blur — LLM likely still reads
+        "EXP002": ["UNCERTAIN", "FLAGGED"],     # heavy blur — fields may be missing/wrong
+        "EXP003": ["UNCERTAIN", "FLAGGED"],     # motion blur — horizontal smear
+    },
+    # case_3: wrong image type — no prices, LLM returns nulls → low confidence
+    "case_3": {
+        "EXP001": ["UNCERTAIN", "FLAGGED"],     # business card — no amount
+        "EXP002": ["UNCERTAIN", "FLAGGED"],     # meeting agenda — no amount
+        "EXP003": ["UNCERTAIN", "FLAGGED"],     # nutrition label — numbers but no price
+    },
+    # case_4: ambiguous numbers — date/ref could be confused for cost
+    "case_4": {
+        "EXP001": ["UNCERTAIN", "FLAGGED"],     # parking ticket — date dominates, no total
+        "EXP002": ["OK", "UNCERTAIN", "FLAGGED"], # invoice — INV-124.50 ref vs $85.00 real
+        "EXP003": ["OK", "UNCERTAIN", "FLAGGED"], # order slip — no TOTAL; if category matches → OK (amount=None skips mismatch rule)
+    },
     "case_1": {
         "EXP001": ["OK"],                    # clean — all rules pass
         "EXP002": ["OK"],                    # clean — all rules pass
